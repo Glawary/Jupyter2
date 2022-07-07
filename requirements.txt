@@ -1,0 +1,5 @@
+jupyter_client
+nbconvert
+numpy
+matplot
+sklearn

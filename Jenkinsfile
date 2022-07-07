@@ -6,26 +6,29 @@ pipeline {
 			steps{
                            sh '''
 				#!bin/bash
-				echo 'Building...'
-                                pwd
+				echo 'Building...'                         
                                 pip3 install -r requirements.txt
-				jupyter-nbconvert --to=html Jupyter2.ipynb
+				
 			      '''
                         }
 		}
 		stage('Test'){
 			steps{
+                           sh '''
+                                #!bin/bash
 				echo 'Testing..'
+                                jupyter-nbconvert --to=html Jupyter2.ipynb
+
+                              '''
+
 			}
 		}
-}
-                post {
-        always {
+        }
+        post {
+                always {
               
-               archiveArtifacts artifacts: 'Jupyter2.html', followSymlinks: false
+                        archiveArtifacts artifacts: 'Jupyter2.html', followSymlinks: false
      
-               }
-   }
-
-     
+                }
+        }
 }
